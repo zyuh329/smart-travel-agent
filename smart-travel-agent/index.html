@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智游AI - 智能旅游规划平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">智游AI</div>
+            <nav class="nav">
+                <a href="#" class="active">首页</a>
+                <a href="#features">功能</a>
+                <a href="#about">关于</a>
+                <a href="#contact">联系我们</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>AI驱动的智能旅游规划</h1>
+                <p class="subtitle">多Agent协作 · 长链推理 · 个性化推荐</p>
+                <div class="search-box">
+                    <textarea id="userInput" placeholder="请描述您的旅行需求，如：我想去云南昆明大理，5天4晚，预算5000元，喜欢自然风光和美食"></textarea>
+                    <button id="generateBtn" class="btn-primary">
+                        <span class="btn-text">开始智能规划</span>
+                        <span class="btn-loading" style="display: none;">规划中...</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="agent-flow" class="agent-section" style="display: none;">
+            <div class="container">
+                <h2>多Agent协作流程</h2>
+                <div class="agent-chain">
+                    <div class="agent-card" id="agent1">
+                        <div class="agent-icon">🎯</div>
+                        <h3>需求解析Agent</h3>
+                        <p>语义理解 · 意图识别 · 偏好挖掘</p>
+                        <div class="agent-status pending">等待中</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="agent-card" id="agent2">
+                        <div class="agent-icon">📋</div>
+                        <h3>规划Agent</h3>
+                        <p>长链推理 · 行程生成 · 路线编排</p>
+                        <div class="agent-status pending">等待中</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="agent-card" id="agent3">
+                        <div class="agent-icon">🔍</div>
+                        <h3>资源匹配Agent</h3>
+                        <p>景点筛选 · 酒店匹配 · 餐饮推荐</p>
+                        <div class="agent-status pending">等待中</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="agent-card" id="agent4">
+                        <div class="agent-icon">✨</div>
+                        <h3>优化Agent</h3>
+                        <p>冲突检测 · 体验提升 · 智能调优</p>
+                        <div class="agent-status pending">等待中</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="result" class="result-section" style="display: none;">
+            <div class="container">
+                <h2>您的智能行程规划</h2>
+                <div class="result-header">
+                    <div class="result-info">
+                        <span class="tag">云南昆大丽</span>
+                        <span class="tag">5天4晚</span>
+                        <span class="tag">¥5000预算</span>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-num">Day 1</span>
+                            <span class="day-title">昆明抵达 · 滇池漫步</span>
+                        </div>
+                        <div class="timeline-items">
+                            <div class="timeline-item">
+                                <span class="time">09:00</span>
+                                <div class="item-content">
+                                    <h4>抵达昆明长水机场</h4>
+                                    <p>专车接机，前往市区酒店</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">14:00</span>
+                                <div class="item-content">
+                                    <h4>滇池海埂公园</h4>
+                                    <p>欣赏滇池风光，喂食红嘴鸥</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">18:30</span>
+                                <div class="item-content">
+                                    <h4>昆明老街品尝过桥米线</h4>
+                                    <p>推荐：建新园或福华园</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-num">Day 2</span>
+                            <span class="day-title">昆明→大理 · 洱海日落</span>
+                        </div>
+                        <div class="timeline-items">
+                            <div class="timeline-item">
+                                <span class="time">08:00</span>
+                                <div class="item-content">
+                                    <h4>高铁前往大理（2小时）</h4>
+                                    <p>二等座 ¥145/人</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">12:00</span>
+                                <div class="item-content">
+                                    <h4>大理古城</h4>
+                                    <p>办理入住，品尝白族三道茶</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">16:00</span>
+                                <div class="item-content">
+                                    <h4>洱海西岸骑行</h4>
+                                    <p>推荐：龙龛码头→才村码头</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">19:00</span>
+                                <div class="item-content">
+                                    <h4>双廊海景餐厅晚餐</h4>
+                                    <p>欣赏洱海日落</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-num">Day 3</span>
+                            <span class="day-title">苍山探秘 · 洱海东岸</span>
+                        </div>
+                        <div class="timeline-items">
+                            <div class="timeline-item">
+                                <span class="time">09:00</span>
+                                <div class="item-content">
+                                    <h4>苍山洗马潭索道</h4>
+                                    <p>登顶苍山，俯瞰洱海</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">13:00</span>
+                                <div class="item-content">
+                                    <h4>天龙八部影视城</h4>
+                                    <p>感受金庸武侠文化</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">15:30</span>
+                                <div class="item-content">
+                                    <h4>洱海东岸自驾</h4>
+                                    <p>小普陀→鹿卧山→双廊</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-num">Day 4</span>
+                            <span class="day-title">丽江古城 · 玉龙雪山</span>
+                        </div>
+                        <div class="timeline-items">
+                            <div class="timeline-item">
+                                <span class="time">07:00</span>
+                                <div class="item-content">
+                                    <h4>大理→丽江（火车2.5小时）</h4>
+                                    <p>¥88/人</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">10:00</span>
+                                <div class="item-content">
+                                    <h4>玉龙雪山景区</h4>
+                                    <p>大索道登顶，游览蓝月谷</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">18:00</span>
+                                <div class="item-content">
+                                    <h4>丽江古城四方街</h4>
+                                    <p>纳西族篝火晚会</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-card">
+                        <div class="day-header">
+                            <span class="day-num">Day 5</span>
+                            <span class="day-title">束河古镇 · 返程</span>
+                        </div>
+                        <div class="timeline-items">
+                            <div class="timeline-item">
+                                <span class="time">09:00</span>
+                                <div class="item-content">
+                                    <h4>束河古镇</h4>
+                                    <p>茶马古道，拍摄纳西族建筑</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">12:00</span>
+                                <div class="item-content">
+                                    <h4>丽江三文鱼庄</h4>
+                                    <p>品尝虹鳟鱼特色美食</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">14:00</span>
+                                <div class="item-content">
+                                    <h4>丽江三义机场返程</h4>
+                                    <p>结束愉快旅程</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="budget-summary">
+                    <h3>费用预算明细</h3>
+                    <table>
+                        <tr>
+                            <td>交通（机票+高铁）</td>
+                            <td>¥1,800</td>
+                        </tr>
+                        <tr>
+                            <td>住宿（4晚）</td>
+                            <td>¥1,600</td>
+                        </tr>
+                        <tr>
+                            <td>门票+索道</td>
+                            <td>¥800</td>
+                        </tr>
+                        <tr>
+                            <td>餐饮</td>
+                            <td>¥600</td>
+                        </tr>
+                        <tr>
+                            <td>其他</td>
+                            <td>¥200</td>
+                        </tr>
+                        <tr class="total">
+                            <td>总计</td>
+                            <td>¥4,000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>核心功能</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>长链推理</h3>
+                        <p>基于思维链(CoT)的多步推理，自动规划最优行程路线</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>多Agent协作</h3>
+                        <p>需求解析→规划→资源匹配→优化，四阶段智能处理</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>智能冲突检测</h3>
+                        <p>自动检测行程时间冲突，优化时间分配</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>个性化推荐</h3>
+                        <p>深度理解用户偏好，精准推荐景点美食住宿</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 智游AI - 智能旅游规划平台</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
